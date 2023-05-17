@@ -87,3 +87,41 @@ function addDepartment() {
       menu();
     });
 }
+
+function allRoles() {
+  db.query(`SELECT * FROM role`, function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    menu();
+  });
+}
+
+function addRole() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "role_name",
+        message: "What is the name of the role?",
+      },
+      {
+        type: "input",
+        name: "salary",
+        message: "What is the salary of the role?",
+      },
+      {
+        type: "input",
+        name: "role_department",
+        message: "Which department does the role belong to?",
+      },
+    ])
+    .then((response) => {
+      db.query(`INSERT INTO role SET ?`, {
+        title: response.role_name,
+        salary: response.salary,
+        department_id: response.role_department,
+      });
+      console.log(`Added ${response.role_name} to the database`);
+      menu();
+    });
+}
