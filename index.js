@@ -61,3 +61,29 @@ function menu() {
       }
     });
 }
+
+function allDepartments() {
+  db.query(`SELECT * FROM department`, function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    menu();
+  });
+}
+
+function addDepartment() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "department_name",
+        message: "What is the name of the department?",
+      },
+    ])
+    .then((response) => {
+      db.query(`INSERT INTO department SET ?`, {
+        department_name: response.department_name,
+      });
+      console.log(`Added ${response.department_name} to the database`);
+      menu();
+    });
+}
