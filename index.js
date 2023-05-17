@@ -125,3 +125,49 @@ function addRole() {
       menu();
     });
 }
+
+function allEmployees() {
+  db.query(`SELECT * FROM employee`, function (err, res) {
+    if (err) throw err;
+    console.table(res);
+    menu();
+  });
+}
+
+function addEmployee() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "first_name",
+        message: "What is the employee's first name?",
+      },
+      {
+        type: "input",
+        name: "last_name",
+        message: "What is the employee's last name?",
+      },
+      {
+        type: "input",
+        name: "employee_role",
+        message: "What is the employee's role id?",
+      },
+      {
+        type: "input",
+        name: "manager",
+        message: "What is the employee's manager id?",
+      },
+    ])
+    .then((response) => {
+      db.query(`INSERT INTO employee SET ?`, {
+        first_name: response.first_name,
+        last_name: response.last_name,
+        role_id: response.employee_role,
+        manager_id: response.manager,
+      });
+      console.log(
+        `Added ${response.first_name} ${response.last_name} to the database`
+      );
+      menu();
+    });
+}
