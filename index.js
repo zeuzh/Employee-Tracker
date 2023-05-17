@@ -14,7 +14,7 @@ db.connect(function (err) {
   menu();
 });
 
-function menu() {
+const menu = () => {
   inquirer
     .prompt([
       {
@@ -62,7 +62,7 @@ function menu() {
     });
 }
 
-function allDepartments() {
+const allDepartments = () => {
   db.query(`SELECT * FROM department`, function (err, res) {
     if (err) throw err;
     console.table(res);
@@ -70,7 +70,7 @@ function allDepartments() {
   });
 }
 
-function addDepartment() {
+const addDepartment = () => {
   inquirer
     .prompt([
       {
@@ -88,7 +88,7 @@ function addDepartment() {
     });
 }
 
-function allRoles() {
+const allRoles = () => {
   db.query(`SELECT * FROM role`, function (err, res) {
     if (err) throw err;
     console.table(res);
@@ -96,7 +96,7 @@ function allRoles() {
   });
 }
 
-function addRole() {
+const addRole = () => {
   inquirer
     .prompt([
       {
@@ -126,7 +126,7 @@ function addRole() {
     });
 }
 
-function allEmployees() {
+const allEmployees = () => {
   db.query(`SELECT * FROM employee`, function (err, res) {
     if (err) throw err;
     console.table(res);
@@ -134,7 +134,7 @@ function allEmployees() {
   });
 }
 
-function addEmployee() {
+const addEmployee = () => {
   inquirer
     .prompt([
       {
@@ -172,7 +172,7 @@ function addEmployee() {
     });
 }
 
-function updateEmployee() {
+const updateEmployee = () => {
   const employeeSql = `SELECT * FROM employee`;
   db.query(employeeSql, (err, data) => {
     if (err) throw err;
