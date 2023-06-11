@@ -60,7 +60,7 @@ const menu = () => {
         process.exit();
       }
     });
-}
+};
 
 const allDepartments = () => {
   db.query(`SELECT * FROM department`, function (err, res) {
@@ -68,7 +68,7 @@ const allDepartments = () => {
     console.table(res);
     menu();
   });
-}
+};
 
 const addDepartment = () => {
   inquirer
@@ -86,7 +86,7 @@ const addDepartment = () => {
       console.log(`Added ${response.department_name} to the database`);
       menu();
     });
-}
+};
 
 const allRoles = () => {
   db.query(`SELECT * FROM role`, function (err, res) {
@@ -94,7 +94,7 @@ const allRoles = () => {
     console.table(res);
     menu();
   });
-}
+};
 
 const addRole = () => {
   inquirer
@@ -124,7 +124,7 @@ const addRole = () => {
       console.log(`Added ${response.role_name} to the database`);
       menu();
     });
-}
+};
 
 const allEmployees = () => {
   db.query(`SELECT * FROM employee`, function (err, res) {
@@ -132,7 +132,7 @@ const allEmployees = () => {
     console.table(res);
     menu();
   });
-}
+};
 
 const addEmployee = () => {
   inquirer
@@ -170,7 +170,7 @@ const addEmployee = () => {
       );
       menu();
     });
-}
+};
 
 const updateEmployee = () => {
   const employeeSql = `SELECT * FROM employee`;
@@ -229,4 +229,4 @@ const updateEmployee = () => {
         });
       });
   });
-}
+};
