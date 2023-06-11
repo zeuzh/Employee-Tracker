@@ -75,13 +75,13 @@ const addDepartment = () => {
     .prompt([
       {
         type: "input",
-        name: "department_name",
+        name: "dept_name",
         message: "What is the name of the department?",
       },
     ])
     .then((response) => {
       db.query(`INSERT INTO department SET ?`, {
-        department_name: response.department_name,
+        name: response.dept_name,
       });
       console.log(`Added ${response.department_name} to the database`);
       menu();
